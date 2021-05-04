@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 // const checkJwt = require('./src/index')
 const mwBasicAuth = require('./src/basicAuth')
-
+const port = process.env.PORT || 3000; 
 var app = express();
 // var app = express.Router();
 
@@ -22,8 +22,8 @@ app.use(mwBasicAuth)
 require('./distaurant/index')(app)
 
 // Start server
-app.listen(3000);
-console.log("Server running on port 3000");
+app.listen(port);
+console.log("Server running on port " + port);
 
 
 // app.use(function (err, req, res, next) {
