@@ -10,7 +10,7 @@ module.exports = function (app) {
     let database = admin.database()
 
     // Koordinatör listesini döner *
-    app.get('/distaurant/api/reservation', async (req, res) => {
+    app.get('/api/reservation', async (req, res) => {
         let {tableID, customerName} = req.query;
         database.ref("reservations").orderByChild("tableID").equalTo(tableID)
             .once('value')
