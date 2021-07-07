@@ -6,7 +6,7 @@ var maxReservationTime = 45;
 module.exports = function (app) {
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
-        databaseURL: "https://distaurant-fba6e-default-rtdb.europe-west1.firebasedatabase.app",
+        databaseURL: "", //database url in here
     });
 
     let database = admin.database()
@@ -23,13 +23,11 @@ module.exports = function (app) {
             .once('value')
             .then((querySnapshot) => {
                 if(querySnapshot && querySnapshot.numChildren() >= 1){
-                    //masa rezerveli hata ver
                     res.status(200).send({
                         status: 'error',
                         description: 'table_already_reserved'
                     })
                 }else{
-                    //masa rezerveli değil rezervasyon oluştur
                     database
                         .ref('reservations')
                         .push({
